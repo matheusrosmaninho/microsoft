@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using RazorPagesMovie.Data;
+using RazorPagesMovie.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +14,12 @@ else
     builder.Services.AddDbContext<RazorPagesMovieContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("ProductionMovieContext")));
 
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    SeedData.Initialize(services);
+}
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
