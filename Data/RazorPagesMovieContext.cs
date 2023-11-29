@@ -1,14 +1,13 @@
 using Microsoft.EntityFrameworkCore;
 
-namespace RazorPagesMovie.Data
-{
-    public class RazorPagesMovieContext : DbContext
-    {
-        public RazorPagesMovieContext(DbContextOptions<RazorPagesMovieContext> options)
-            : base(options)
-        {
-        }
+namespace RazorPagesMovie.Data;
 
-        public DbSet<RazorPagesMovie.Models.Movie> Movie { get; set; } = default!;
+public class RazorPagesMovieContext : DbContext
+{
+    public RazorPagesMovieContext(DbContextOptions<RazorPagesMovieContext> options)
+        : base(options)
+    {
     }
+
+    public DbSet<RazorPagesMovie.Models.Movie> Movie { get; set; } = default!;
 }
